@@ -6,6 +6,6 @@ The Citizen Engagement application has been verified to work with 3rd party auth
 This repository provides a working example of how this can be achieved using Auth0 as an example. The same has also been verified to work with KeyCloak.
 
 Please follow the documentation in the sub-folders for each piece of the jigsaw
- 1. [Configuring the IdP](https://github.ibm.com/WH-GovSPM/spm-webapps-customssomfa/tree/master/identity-provider/Auth0)
- 2. [Configuring the SP](https://github.ibm.com/WH-GovSPM/spm-webapps-customssomfa/tree/master/service-provider/WebSphere_traditional)
- 3. [Configuring the Citizen Engagement App](https://github.ibm.com/WH-GovSPM/spm-webapps-customssomfa/tree/master/universal-access-custom/explicitSSOLoginRedirection)
+ 1. [Configuring the IdP](./identity-provider/Auth0/README.md)
+ 2. [Configuring the SP](./service-provider/WebSphere_traditional/README.md)
+ 3. [Configuring the Citizen Engagement App](./universal-access-custom/explicitSSOLoginRedirection/README.md)
