@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.ibm.websphere.security.NotImplementedException;
 import com.ibm.wsspi.security.web.saml.AuthnRequestProvider;
 
-public class SPInitTAI implements AuthnRequestProvider {
+public class SPInitTAIKeyCloak implements AuthnRequestProvider {
 
 	@Override
 	public String getIdentityProviderOrErrorURL(HttpServletRequest arg0, String arg1, String arg2,
@@ -67,7 +67,7 @@ public class SPInitTAI implements AuthnRequestProvider {
         		+ "AssertionConsumerServiceURL=\""+acsUrl+"\" " 
         		+ "Destination=\""+destination+"\"> "
         		+ "<saml:Issuer xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">"+issuer
-        		+ "</saml:Issuer> <samlp:NameIDPolicy Format=\"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress\" AllowCreate=\"true\" />"
+        		+ "</saml:Issuer> <samlp:NameIDPolicy Format=\"urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified\" AllowCreate=\"true\" />"
         		+"<samlp:RequestedAuthnContext Comparison=\"exact\"> <saml:AuthnContextClassRef xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">"
         		+ "urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef></samlp:RequestedAuthnContext> </samlp:AuthnRequest>";
         
