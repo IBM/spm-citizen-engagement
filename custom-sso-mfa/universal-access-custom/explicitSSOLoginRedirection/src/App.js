@@ -1,11 +1,3 @@
-/*
- * Licensed Materials - Property of IBM
- *
- * Copyright IBM Corporation 2018-2021. All Rights Reserved.
- *
- * US Government Users Restricted Rights - Use, duplication or disclosure
- * restricted by GSA ADP Schedule Contract with IBM Corp.
- */
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Main } from '@govhhs/govhhs-design-system-react';
