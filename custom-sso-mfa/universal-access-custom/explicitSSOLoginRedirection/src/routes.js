@@ -1,12 +1,3 @@
-/*
- * Licensed Materials - Property of IBM
- *
- * Copyright IBM Corporation 2021. All Rights Reserved.
- *
- * US Government Users Restricted Rights - Use, duplication or disclosure
- * restricted by GSA ADP Schedule Contract with IBM Corp.
- */
-
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import { Routes as UARoutes, TitledRoute, AppSpinner, LoadingPage } from '@spm/universal-access-ui';

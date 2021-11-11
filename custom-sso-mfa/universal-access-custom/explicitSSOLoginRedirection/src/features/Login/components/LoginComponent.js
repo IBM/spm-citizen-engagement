@@ -1,14 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable react/no-unused-prop-types */
-/*
- * Licensed Materials - Property of IBM
- *
- * Copyright IBM Corporation 2021. All Rights Reserved.
- *
- * US Government Users Restricted Rights - Use, duplication or disclosure
- * restricted by GSA ADP Schedule Contract with IBM Corp.
- */
-
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
