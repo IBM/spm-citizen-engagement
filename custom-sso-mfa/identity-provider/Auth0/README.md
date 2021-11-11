@@ -11,8 +11,8 @@ It describes the set-up of Auth0 as Identity Provider in a SP-initiated SAML SSO
 
 ## Procedure
 
-1. Under Authentication -> Databaser -> Username-Password-Authentication connection -> Settings, turn on the **Requires Username** toggle.
-2. Under User Management -> Users, click on Create user, and add an user whose Username is present in the ExternalUsers table in Curam SPM.
+1. Under Authentication -> Database -> Username-Password-Authentication connection -> Settings, turn on the **Requires Username** toggle.
+2. Under User Management -> Users, click on Create user, and add an user whose Username is present in the ExternalUser table in Cúram SPM.
 3. Under Applications -> Applications -> Default App configure these parameters:
    1. Application Properties -> Application Type -> Single Page Application
    2. Appliaction URIs:
@@ -23,7 +23,7 @@ It describes the set-up of Auth0 as Identity Provider in a SP-initiated SAML SSO
    2. The Settings code box shows a set of default settings - specify the ones in the file `sample_samladdon_config_twas.json` to work with Traditional Websphere Application Server as a service provider.
 5. In the usage tab, download the Identity Provider Metadata xml - required to configure your service provider.
 
-# Multifactor Authentication
+# Multi-Factor Authentication
 
 You can configure a MFA profile for your app, for example:
 

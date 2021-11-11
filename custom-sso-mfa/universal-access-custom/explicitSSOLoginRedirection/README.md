@@ -18,12 +18,16 @@ For instance:
 REACT_APP_SAMLSSO_EXPLICIT_URL=https://localhost/Rest?Target=https://localhost/universal/samlredirect?relayurl=
 ```
 
-Please note for Curam SPM releases earlier than 7.0.9.0 iFix6, and as a good practice, please set the variable REACT_APP_LOGOUT_END_POINT=/logout.jsp or REACT_APP_LOGOUT_END_POINT=/logout (for later releases).
+Please note for Cúram SPM releases earlier than 7.0.9.0 iFix6, and as a good practice, please set the variable REACT_APP_LOGOUT_END_POINT=/logout.jsp or REACT_APP_LOGOUT_END_POINT=/logout (for later releases).
 
 ## For IBM Security Verify Access as Identity Provider:
 
 ### IDP-initiated:
+```
 REACT_APP_SAMLSSO_EXPLICIT_URL=https://localhost:12443/isam/sps/saml20idp/saml20/logininitial?RequestBinding=HTTPPost&PartnerId=https://localhost/samlsps/acs&NameIdFormat=Email&Target=https://localhost/idp/samlredirect?relayurl=
+```
 
 ### SP-initiated:
+```
 REACT_APP_SAMLSSO_EXPLICIT_URL=/Rest?Target=https://localhost/sp/samlredirect?relayurl=
+```

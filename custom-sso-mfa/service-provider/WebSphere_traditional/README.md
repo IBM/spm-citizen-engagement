@@ -5,8 +5,8 @@ It describes the set-up of Websphere Application Server Traditional profile as S
 
 # Prerequisites
 
-- A set up Curam Application server in Websphere 8.5.5 or 9.
-- An IBM HTTP Server configured with the WebSphere Plugins module to serve Curam apps.
+- A set up Cúram Application server in Websphere 8.5.5 or 9.
+- An IBM HTTP Server configured with the WebSphere Plugins module to serve Cúram apps.
 
 # Customise and install SAML Service Provider (SP) app
 
@@ -60,20 +60,23 @@ zip -u WebSphereSamlSP.ear WebSphereSamlSPWeb.war
 
 # Implementing the Trust Association Interceptor for SP-initiated SSO
 
-1.	Open a root login session to the ``<was-host>``, and copy acs_java_dev/SPInitTAI onto a folder (ie. /root).
+1.	Open a root login session to the ``<was-host>``, and copy acs_java_dev/SPInitTAI onto a folder (ie. /root), or the acs_java_dev/SPInitTAIKeyCloak in case of configuring for KeyCloak.
 2.	Run below commands in your terminal to unzip and compile the curam.sso.SPInitTAI class needed in WebSphereSamlSP to intercept calls to /Rest and initiate SAML SSO. It assumes the $WAS_HOME is /opt/IBM/WebSphere/AppServer and uses WAS Java SDK 1.8.
 
-Note: substitute the `<isam-hosturl>` for the Identity Provider SAML login URL, as well as the ``<acs-url>`` for the Service Provider Assertion Consumer Service URL (`https://<was-host>/samlsps/acs`). Also substitute ``<ce-redirect>`` for the location of your CE application (for example: `https://<web-host>/universal/samlredirect?relayurl=account`)
+Note: substitute the `<idp-hosturl>` for the Identity Provider SAML login URL, as well as the ``<acs-url>`` for the Service Provider Assertion Consumer Service URL (`https://<was-host>/samlsps/acs`). Also substitute ``<ce-redirect>`` for the location of your CE application (for example: `https://<web-host>/universal/samlredirect?relayurl=account`)
 
 ```
 cd /root/acs_java_dev/SPInitTAI/
-sed -i -e 's|%SSOURL%|<isam-host-url>|' -e 's|%ACSURL%|<acs-url>|' -e 's|%CEREDIRECT%|<ce-redirect>|' curam/sso/SPInitTAI.java
+sed -i -e 's|%SSOURL%|<idp-host-url>|' -e 's|%ACSURL%|<acs-url>|' -e 's|%CEREDIRECT%|<ce-redirect>|' curam/sso/SPInitTAI.java
+# for keycloak
+sed -i -e 's|%SSOURL%|<idp-host-url>|' -e 's|%ACSURL%|<acs-url>|' -e 's|%CEREDIRECT%|<ce-redirect>|' curam/sso/SPInitTAIKeyCloack.java
 /opt/IBM/WebSphere/AppServer/java/8.0/bin/javac -cp /opt/IBM/WebSphere/AppServer/dev/JavaEE/j2ee.jar:/opt/IBM/WebSphere/AppServer/dev/was_public.jar -d classes/ curam/sso/SPInitTAI.java
-/opt/IBM/WebSphere/AppServer/java/8.0/bin/jar cvf SPInitTAI.jar -C classes/ curam/sso/SPInitTAI.class
+/opt/IBM/WebSphere/AppServer/java/8.0/bin/javac -cp /opt/IBM/WebSphere/AppServer/dev/JavaEE/j2ee.jar:/opt/IBM/WebSphere/AppServer/dev/was_public.jar -d classes/ curam/sso/SPInitTAIKeyCloak.java
+/opt/IBM/WebSphere/AppServer/java/8.0/bin/jar cvf SPInitTAI.jar -C classes/ curam/sso/SPInitTAI.class curam/sso/SPInitTAIKeyCloak.class
 \cp -a SPInitTAI.jar /opt/IBM/WebSphere/AppServer/lib/ext
 ```
 
-During the Service-provider Security configuration section below, we'll add a reference to the class `curam.sso.SPInitTAI`.
+During the Service-provider Security configuration section below, we'll add a reference to the class `curam.sso.SPInitTAI`, or `curam.sso.SPInitTAIKeyCloak` for KeyCloak Identity Provider.
 
 # Adding the Identity provider as a trusted inbound realm
 
@@ -81,9 +84,9 @@ During the Service-provider Security configuration section below, we'll add a re
 2. In the Available realm definitions, click “Configure” button.
 3. Click on “Trusted authentication realms – inbound” link.
 4.	Click on “Add External Realm…” button.
-5.	In the “External realm name”, type in the ``<isam-host>``
+5.	In the “External realm name”, type in the ``<idp-host>``
 6.	Click “OK” button.
-7.	``<isam-host>`` will appear in the list of realms as trusted. Save the configuration.
+7.	``<idp-host>`` will appear in the list of realms as trusted. Save the configuration.
 
 # Service-provider Security configuration
 
@@ -99,8 +102,9 @@ These steps can be followed in https://www.ibm.com/support/knowledgecenter/en/SS
      - Name: `sso_1.sp.acsUrl` Value: ``https://<was-host>/samlsps/acs``
      - Name: `sso_1.sp.filter` Value: `request-url!=j_security_check`
      - Name: `sso_1.sp.enforceTaiCookie` Value: `false`
-     - Name: `sso_1.sp.login.error.page` Value: `curam.sso.SPInitTAI`
+     - Name: `sso_1.sp.login.error.page` Value: `curam.sso.SPInitTAI` or for KeyCloak `curam.sso.SPInitTAIKeyCloak`
      - Name: `sso_1.sp.preserveRequestState` Value: `false`
+     - [**KeyCloak** specific] Name: `sso_1.sp.wantAssertionsSigned` Value: `false`
 6.	Click OK button, and save the configuration.
 7.	Add and/or modify custom security properties in WAS: navigate to Global security, and then to Custom Properties:
    - Name: `com.ibm.websphere.security.DeferTAItoSSO ` Value: `com.ibm.ws.security.web.saml.ACSTrustAssociationInterceptor`
@@ -122,12 +126,12 @@ exit
 
 # Importing the Identiy Provider metadata.
 
-1.	Copy the file that you exported from ISAM called federation-metadata.xml to the ``<was-host>`` in a folder like /root.
-2.	Open a root session to ``<was-host>``, and run below commands to import the IdP metadata via wsadmin.sh (commands in red) – note that $WAS_HOME for our environment was /opt/IBM/WebSphere/AppServer
+1.	Copy the file that you exported from the Identity Provider - called federation-metadata.xml for this example - to the ``<was-host>`` in a folder like /root.
+2.	Open a root session to ``<was-host>``, and run below commands to import the IdP metadata via wsadmin.sh – note that $WAS_HOME for our environment was /opt/IBM/WebSphere/AppServer
 
 ```
 /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin/wsadmin.sh -lang jython
-AdminTask.importSAMLIdpMetadata('-idpMetadataFileName /root/federation_metadata.xml -idpId 1 -ssoId 1 -signingCertAlias isam-conf')
+AdminTask.importSAMLIdpMetadata('-idpMetadataFileName /root/federation_metadata.xml -idpId 1 -ssoId 1 -signingCertAlias idp-signcert')
 AdminConfig.save()
 exit
 ```
