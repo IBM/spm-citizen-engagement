@@ -9,5 +9,3 @@ The following steps provide a working example of an implementation of multi-fact
  1. [Configuring an identity provider (IdP)](./identity-provider/Auth0/README.md)
  2. [Configuring a service provider (SP)](./service-provider/WebSphere_traditional/README.md)
  3. [Customizing Universal Access](./universal-access-custom/explicitSSOLoginRedirection/README.md)
-
-You can also view the example in the [Gihub open source repository](https://github.com/IBM/spm-citizen-engagement/tree/main/custom-sso-mfa).
