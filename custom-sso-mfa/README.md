@@ -1,4 +1,4 @@
-# Support for multi-factor authentication through third-party solutions
+# Configuring multi-factor authentication through third-party solutions
 
 The security of a citizen's information is critical to customers. We recommend that all customers use the strongest security strategies available to secure their clients' information. Multi-factor authentication is one such strategy that can ensure that a citizen's account cannot be easily accessed through stolen credentials or weak passwords.
 

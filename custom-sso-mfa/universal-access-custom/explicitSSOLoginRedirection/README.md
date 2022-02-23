@@ -1,6 +1,6 @@
 # Customizing Universal Access for explicit single sign-on logon redirection
 
-Copy the provided src/features in your Universal Access Responsive Web Application project. The rest of the files under /src are just examples that show how to wire them up. Compare the files with the default files that are provided in the @spm/universal-access-starter-pack to get started.
+Copy the provided src/features in your Universal Access Responsive Web Application project. The remaining files under /src are examples that show how to set up the features. To get started, compare the /src files with the default files that are provided in the @spm/universal-access-starter-pack.
 
 The customizations have been tested in the following releases:
 
@@ -20,7 +20,7 @@ REACT_APP_SAMLSSO_EXPLICIT_URL=https://localhost/Rest?Target=https://localhost/u
 
 For Social Program Management releases earlier than 7.0.9.0 iFix6, and as a good practice, set the REACT_APP_LOGOUT_END_POINT=/logout.jsp variable. For 7.0.9.0 iFix6 and later releases, set the REACT_APP_LOGOUT_END_POINT=/logout variable.
 
-## Configuration when using IBM Security Verify access as an identity provider
+## Variable configuration with IBM Security Verify access as an identity provider
 
 Configure the ``REACT_APP_SAMLSSO_EXPLICIT_URL`` variable as shown in the following examples.
 
