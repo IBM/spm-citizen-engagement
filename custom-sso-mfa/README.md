@@ -1,11 +1,13 @@
-# Support for Multi-Factor authentication via 3rd party solutions.
-We know that the security of a citizens information is critical to our customers. We recommend that all of our customers use the strongest security strategies available to secure their clients information. Multi-factor authentication is one such strategy that can ensure a citizens account can not be easily accessed via stolen credentials or weak passwords.
+# Support for multi-factor authentication through third-party solutions
 
-The Citizen Engagement application has been verified to work with 3rd party authentication solutions that provide multi-factor authentication flows **via the SAML protocol**. The Application can be configured to delegate the entire authentication process to a 3rd party solution, which will now provide the login screens and MFA challenges before authenticating the user with the Service Provider (IBM Social Program Management) and redirecting back to the users account in the Citizen Engagement application.
+The security of a citizen's information is critical to customers. We recommend that all customers use the strongest security strategies available to secure their clients' information. Multi-factor authentication is one such strategy that can ensure that a citizen's account cannot be easily accessed through stolen credentials or weak passwords.
 
-This repository provides a working example of how this can be achieved using Auth0 as an example. The same has also been verified to work with KeyCloak.
+The Universal Access Responsive Web Application has been verified to work with third-party authentication solutions that provide multi-factor authentication flows **through the SAML protocol**. You can configure the application to delegate the entire authentication process to a third-party solution. A third-party solution can provide the login screens and multi-factor authentication challenges before authenticating the user with the service provider (IBM Social Program Management) and then redirecting back to the user's account in the Universal Access application.
 
-Please follow the documentation in the sub-folders for each piece of the jigsaw
- 1. [Configuring the IdP](./identity-provider/Auth0/README.md)
- 2. [Configuring the SP](./service-provider/WebSphere_traditional/README.md)
- 3. [Configuring the Citizen Engagement App](./universal-access-custom/explicitSSOLoginRedirection/README.md)
+This repository provides a working example of an implementation of multi-factor authentication through a third-party solution by using Auth0 as an example. A similar implementation has also been verified to work with KeyCloak.
+
+To create your own implementation of multi-factor authentication through a third-party solution, complete the following steps:
+
+ 1. [Configuring an identity provider (IdP)](./identity-provider/Auth0/README.md)
+ 2. [Configuring a service provider (SP)](./service-provider/WebSphere_traditional/README.md)
+ 3. [Customizing Universal Access](./universal-access-custom/explicitSSOLoginRedirection/README.md)
