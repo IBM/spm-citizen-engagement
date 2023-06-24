@@ -10,7 +10,7 @@ Set up an Auth0 account with the default application.
 ## Procedure
 
 1. Click **Authentication -> Database -> Username-Password-Authentication connection -> Settings**, and enable the **Requires Username** option.
-2. Click **User Management -> Users -> Create user**, and add a user whose username is present in the ExternalUser table in Social Program Management.
+2. Click **User Management -> Users -> Create user**, and add a user whose username is present in the ExternalUser table in Cúram.
 3. Click **Applications -> Applications -> Default App**, and configure the following parameters:
    1. Click **Application Properties -> Application Type -> Single Page Application**.
    2. Under Application URIs, configure the following URLs:
