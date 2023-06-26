@@ -18,7 +18,7 @@ The following example shows how the ``REACT_APP_SAMLSSO_EXPLICIT_URL`` variable 
 REACT_APP_SAMLSSO_EXPLICIT_URL=https://localhost/Rest?Target=https://localhost/universal/samlredirect?relayurl=
 ```
 
-For Social Program Management releases earlier than 7.0.9.0 iFix6, and as a good practice, set the REACT_APP_LOGOUT_END_POINT=/logout.jsp variable. For 7.0.9.0 iFix6 and later releases, set the REACT_APP_LOGOUT_END_POINT=/logout variable.
+For Cúram releases earlier than 7.0.9.0 iFix6, and as a good practice, set the REACT_APP_LOGOUT_END_POINT=/logout.jsp variable. For 7.0.9.0 iFix6 and later releases, set the REACT_APP_LOGOUT_END_POINT=/logout variable.
 
 ## Variable configuration with IBM Security Verify access as an identity provider
 
